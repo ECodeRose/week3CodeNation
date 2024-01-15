@@ -12,6 +12,16 @@ function playSound(e){
     audio.play();
 }
 
+function clickSound(e){
+    const audio = document.querySelector(`audio[data-key="${e.getAttribute('data-key')}"]`);
+    const key = document.querySelector(`div[data-key="${e.getAttribute('data-key')}"]`);
+    if(!audio) return;
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+}
+
 const keys = Array.from(document.querySelectorAll('.key'));
 keys.forEach(key => key.addEventListener('transitionend', removeTransition))
 window.addEventListener('keydown', playSound);
+
